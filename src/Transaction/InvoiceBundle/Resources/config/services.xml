@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    
+    <services>
+        <service id="invoice.service" class="Transaction\InvoiceBundle\Services\InvoiceService">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+        <service id="app.exception_listener" class="Transaction\InvoiceBundle\Services\ExceptionListener">
+            <argument type="service" id="router" />
+            <tag name="kernel.event_listener" event="kernel.exception" methord="onKernelException"/>
+            <tag name="kernel.event_listener" event="kernel.request"  methord="onKernelRequest"/>
+        </service>
+    </services>
+</container>

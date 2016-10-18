@@ -1,0 +1,29 @@
+
+{#check if result is empty#}
+{% if result|length > 0 %}
+    {% for invoice in result %}
+        <tr>
+            <td>{{invoice.invoice_num}}</td>
+            <td>{{invoice.invoice_date}}</td>
+            <td>{{invoice.product_description}}</td>
+            <td>{{invoice.qty}}</td>
+            <td>{{invoice.price}}</td>
+            <td>{{invoice.price * invoice.qty}}</td>
+        </tr>
+    {% endfor %}
+
+
+{% else %}
+    <tr>
+        <td colspan="6">
+            <div class="alert alert-warning col-md-8 col-md-offset-2 margin" style="white-space: normal;">
+                <h4>No Results Found</h4>
+                <p>Seems there are none! Try changing a filter..! </p>
+            </div>
+        </td>
+    </tr>
+{% endif %}
+
+
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <link href="{{ asset('bundles/invoice/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/invoice/css/style.css') }}" rel="stylesheet">
+
+</head>
+<body>
+    {#    Header start #}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Invoice</a>
+            </div>
+
+        </div>
+    </nav>
+    {#    Header end #}
+
+    {#    Content start#}
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+    {#    Content end#}
+
+    {% block javascripts %}
+        <script src="{{ asset('bundles/invoice/js/jquery-2.2.3.min.js') }}"></script>
+        <script src="{{ asset('bundles/invoice/js/bootstrap.min.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,100 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Invoice list{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+
+            {# Filters Start #}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Relative Date</label>
+                            <select name="relative_date" class="form-control" data-href="{{absolute_url(path('transaction_invoice_invoice_list'))}}" >
+                                <option value="">- -SELECT- -</option>
+                                <option value="1">Last Month to Date</option>
+                                <option value="2">This Month</option>
+                                <option value="3">This Year</option>
+                                <option value="4">Last Year</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <label>Client</label>
+                        <select name="client" class="form-control" data-href="{{absolute_url(path('transaction_invoice_invoice_list'))}}">
+
+                            <option value="">- - SELECT CLIENT - -</option>
+                            {% for client in clients %}
+                                <option value="{{client.client_id}}">{{client.client_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Products</label>
+                        <select name="product" class="form-control" data-href="{{absolute_url(path('transaction_invoice_invoice_list'))}}">
+                            <option value="">- -SELECT PRODUCT- -</option>
+
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+            {# Filter End #}
+
+            {# Invouce List Start #}
+            <div class="panel panel-default">
+                <div class="panel-heading ">
+                    Invoice list 
+                </div>
+
+
+                <div class="panel-body" >
+                    <div class="table-responsive  ">
+                        <table class="table table-hover table-striped table-bordered no-margin">
+                            <thead>
+                                <tr>
+                                    <th>Invoice Num</th>
+                                    <th>Invoice Date</th>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ include('InvoiceBundle:Invoice:table.html.twig', { 'result': result }) }}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            {# Invoice List End #}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/invoice/js/invoice.js') }}"></script>
+
+
+{% endblock %}
+
+
+
+
